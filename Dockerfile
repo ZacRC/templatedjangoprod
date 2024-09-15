@@ -8,10 +8,10 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
+
 COPY .env .
 
-RUN chmod +x entrypoint.sh
-
-ENTRYPOINT ["/app/entrypoint.sh"]
+RUN python manage.py collectstatic --noinput
+RUN python manage.py migrate
 
 CMD ["gunicorn", "VidTalk.wsgi:application", "--bind", "0.0.0.0:8000"]
