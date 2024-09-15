@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'VidTalk.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"postgres://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:{os.environ.get('DB_PORT')}/{os.environ.get('DB_NAME')}",
+        default=os.environ.get('DB_URL'),
         conn_max_age=600
     )
 }
